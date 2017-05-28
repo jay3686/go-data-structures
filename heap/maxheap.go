@@ -49,16 +49,17 @@ func (h MaxHeap) heapify(i int) {
 	}
 }
 
-// Insert adds an element into the heap such that the heap property is still stasified
-func (h MaxHeap) Insert(n int) {
-	h.data = append(h.data[:len(h.data)-1], n)
+// Insert adds an element into the heap such that the heap property is still satsified
+func (h *MaxHeap) Insert(n int) {
 
+	h.data = append(h.data[:len(h.data)], n)
 	// swap with parent if child is larger until at root node
 	// parent of index i is  i / 2
 	c := len(h.data) - 1
-	p := c / 2
+	p := (c - 1) / 2
 	for c > 0 && h.data[p] < h.data[c] {
+		//fmt.Println("wtf", c, p, h.data)
 		h.data[p], h.data[c] = h.data[c], h.data[p]
-		p, c = c, c/2
+		c, p = p, (p-1)/2
 	}
 }
