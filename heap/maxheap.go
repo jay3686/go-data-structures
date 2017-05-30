@@ -7,7 +7,7 @@ type MaxHeap struct {
 }
 
 // Len returns the length of the heap
-func Len(h MaxHeap) int { return len(h.data) }
+func (h MaxHeap) Len() int { return len(h.data) }
 
 // FindMax returns the maximum element in the heap
 func (h MaxHeap) FindMax() int {
@@ -19,7 +19,7 @@ func (h MaxHeap) FindMax() int {
 }
 
 // ExtractMax deletes and returns the max element from the heap
-func (h MaxHeap) ExtractMax() int {
+func (h *MaxHeap) ExtractMax() int {
 	if len(h.data) == 0 {
 		//TODO:  Figure out how to cleanly handle this case
 		return 0
@@ -27,8 +27,8 @@ func (h MaxHeap) ExtractMax() int {
 	n := h.data[0]
 	h.data[0] = h.data[len(h.data)-1]
 	h.data = h.data[:len(h.data)-1]
-	// TODO, rebalance by swapping eleement down
 
+	h.heapify(0)
 	return n
 }
 
