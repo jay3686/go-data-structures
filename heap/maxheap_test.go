@@ -33,7 +33,7 @@ func TestInsertManyAsc(t *testing.T) {
 		m.Insert(n)
 	}
 
-	if !reflect.DeepEqual(m.data, []int{6, 5, 4, 3, 2, 1}) {
-		t.Error("Multiple element insert fail")
+	if !reflect.DeepEqual(m.data, []int{6, 4, 5, 1, 3, 2}) {
+		t.Error("Multiple element insert fail: ", m.data)
 	}
 }
