@@ -37,3 +37,45 @@ func TestInsertManyAsc(t *testing.T) {
 		t.Error("Multiple element insert fail: ", m.data)
 	}
 }
+func TestDeleteOne(t *testing.T) {
+	m := MaxHeap{}
+	m.Insert(1)
+	v := m.ExtractMax()
+	if v != 1 {
+		t.Error("Single element extract fail")
+	}
+}
+
+func TestDeleteManyDesc(t *testing.T) {
+	m := MaxHeap{}
+	nums := []int{6, 5, 4, 3, 2, 1}
+
+	for _, n := range nums {
+		m.Insert(n)
+	}
+
+	for _, n := range nums {
+		v := m.ExtractMax()
+		if v != n {
+			t.Error("Multi element extract fail", v, m.data)
+		}
+	}
+
+}
+
+func TestDeleteManyAsc(t *testing.T) {
+	m := MaxHeap{}
+	nums := []int{1, 2, 3, 4, 5, 6}
+
+	for _, n := range nums {
+		m.Insert(n)
+	}
+
+	maxedNums := []int{6, 5, 4, 3, 2, 1}
+	for _, n := range maxedNums {
+		v := m.ExtractMax()
+		if v != n {
+			t.Error("Multi element extract fail", v, m.data)
+		}
+	}
+}
