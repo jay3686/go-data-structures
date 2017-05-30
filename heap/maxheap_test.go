@@ -1,8 +1,9 @@
 package heap
 
-import "testing"
-
-import "reflect"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestInsertOne(t *testing.T) {
 	m := MaxHeap{}
@@ -37,12 +38,21 @@ func TestInsertManyAsc(t *testing.T) {
 		t.Error("Multiple element insert fail: ", m.data)
 	}
 }
+
 func TestDeleteOne(t *testing.T) {
 	m := MaxHeap{}
 	m.Insert(1)
 	v := m.ExtractMax()
 	if v != 1 {
 		t.Error("Single element extract fail")
+	}
+}
+
+func TestDeleteFromEmptyHeap(t *testing.T) {
+	m := MaxHeap{}
+	v := m.ExtractMax()
+	if v != 0 {
+		t.Error("Empty extract fail")
 	}
 }
 
@@ -77,5 +87,36 @@ func TestDeleteManyAsc(t *testing.T) {
 		if v != n {
 			t.Error("Multi element extract fail", v, m.data)
 		}
+	}
+}
+
+func TestPeekOne(t *testing.T) {
+	m := MaxHeap{}
+	m.Insert(1)
+	v := m.FindMax()
+	if v != 1 {
+		t.Error("Single element peek fail")
+	}
+}
+
+func TestPeekFromEmptyHeap(t *testing.T) {
+	m := MaxHeap{}
+	v := m.FindMax()
+	if v != 0 {
+		t.Error("Empty peek fail")
+	}
+}
+
+func TestLen(t *testing.T) {
+	m := MaxHeap{}
+	if m.Len() != 0 {
+		t.Error("empty len is fail")
+	}
+	m.Insert(1)
+	m.Insert(2)
+	m.Insert(3)
+	m.Insert(4)
+	if m.Len() != 4 {
+		t.Error("len is fail")
 	}
 }
