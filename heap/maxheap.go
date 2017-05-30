@@ -58,7 +58,6 @@ func (h *MaxHeap) Insert(n int) {
 	c := len(h.data) - 1
 	p := (c - 1) / 2
 	for c > 0 && h.data[p] < h.data[c] {
-		//fmt.Println("wtf", c, p, h.data)
 		h.data[p], h.data[c] = h.data[c], h.data[p]
 		c, p = p, (p-1)/2
 	}
