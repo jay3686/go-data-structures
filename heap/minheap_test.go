@@ -5,16 +5,16 @@ import (
 	"testing"
 )
 
-func TestMaxInsertOne(t *testing.T) {
-	m := MaxHeap{}
+func TestMinInsertOne(t *testing.T) {
+	m := MinHeap{}
 	m.Insert(1)
 	if m.data[0] != 1 {
 		t.Error("Single element insert fail")
 	}
 }
 
-func TestMaxInsertManyDesc(t *testing.T) {
-	m := MaxHeap{}
+func TestMinInsertManyDesc(t *testing.T) {
+	m := MinHeap{}
 	nums := []int{6, 5, 4, 3, 2, 1}
 
 	for _, n := range nums {
@@ -26,8 +26,8 @@ func TestMaxInsertManyDesc(t *testing.T) {
 	}
 }
 
-func TestMaxInsertManyAsc(t *testing.T) {
-	m := MaxHeap{}
+func TestMinInsertManyAsc(t *testing.T) {
+	m := MinHeap{}
 	nums := []int{1, 2, 3, 4, 5, 6}
 
 	for _, n := range nums {
@@ -39,25 +39,25 @@ func TestMaxInsertManyAsc(t *testing.T) {
 	}
 }
 
-func TestMaxDeleteOne(t *testing.T) {
-	m := MaxHeap{}
+func TestMinDeleteOne(t *testing.T) {
+	m := MinHeap{}
 	m.Insert(1)
-	v := m.ExtractMax()
+	v := m.ExtractMin()
 	if v != 1 {
 		t.Error("Single element extract fail")
 	}
 }
 
-func TestMaxDeleteFromEmptyHeap(t *testing.T) {
-	m := MaxHeap{}
-	v := m.ExtractMax()
+func TestMinDeleteFromEmptyHeap(t *testing.T) {
+	m := MinHeap{}
+	v := m.ExtractMin()
 	if v != 0 {
 		t.Error("Empty extract fail")
 	}
 }
 
-func TestMaxDeleteManyDesc(t *testing.T) {
-	m := MaxHeap{}
+func TestMinDeleteManyDesc(t *testing.T) {
+	m := MinHeap{}
 	nums := []int{6, 5, 4, 3, 2, 1}
 
 	for _, n := range nums {
@@ -65,7 +65,7 @@ func TestMaxDeleteManyDesc(t *testing.T) {
 	}
 
 	for _, n := range nums {
-		v := m.ExtractMax()
+		v := m.ExtractMin()
 		if v != n {
 			t.Error("Multi element extract fail", v, m.data)
 		}
@@ -73,42 +73,42 @@ func TestMaxDeleteManyDesc(t *testing.T) {
 
 }
 
-func TestMaxDeleteManyAsc(t *testing.T) {
-	m := MaxHeap{}
+func TestMinDeleteManyAsc(t *testing.T) {
+	m := MinHeap{}
 	nums := []int{1, 2, 3, 4, 5, 6}
 
 	for _, n := range nums {
 		m.Insert(n)
 	}
 
-	maxedNums := []int{6, 5, 4, 3, 2, 1}
-	for _, n := range maxedNums {
-		v := m.ExtractMax()
+	minedNums := []int{6, 5, 4, 3, 2, 1}
+	for _, n := range minedNums {
+		v := m.ExtractMin()
 		if v != n {
 			t.Error("Multi element extract fail", v, m.data)
 		}
 	}
 }
 
-func TestMaxPeekOne(t *testing.T) {
-	m := MaxHeap{}
+func TestMinPeekOne(t *testing.T) {
+	m := MinHeap{}
 	m.Insert(1)
-	v := m.FindMax()
+	v := m.FindMin()
 	if v != 1 {
 		t.Error("Single element peek fail")
 	}
 }
 
-func TestMaxPeekFromEmptyHeap(t *testing.T) {
-	m := MaxHeap{}
-	v := m.FindMax()
+func TestMinPeekFromEmptyHeap(t *testing.T) {
+	m := MinHeap{}
+	v := m.FindMin()
 	if v != 0 {
 		t.Error("Empty peek fail")
 	}
 }
 
-func TestMaxLen(t *testing.T) {
-	m := MaxHeap{}
+func TestMinLen(t *testing.T) {
+	m := MinHeap{}
 	if m.Len() != 0 {
 		t.Error("empty len is fail")
 	}
