@@ -21,8 +21,8 @@ func TestMinInsertManyDesc(t *testing.T) {
 		m.Insert(n)
 	}
 
-	if !reflect.DeepEqual(m.data, []int{6, 5, 4, 3, 2, 1}) {
-		t.Error("Multiple element insert fail")
+	if !reflect.DeepEqual(m.data, []int{1, 3, 2, 6, 4, 5}) {
+		t.Error("Multiple element insert fail", m.data)
 	}
 }
 
@@ -34,7 +34,7 @@ func TestMinInsertManyAsc(t *testing.T) {
 		m.Insert(n)
 	}
 
-	if !reflect.DeepEqual(m.data, []int{6, 4, 5, 1, 3, 2}) {
+	if !reflect.DeepEqual(m.data, []int{1, 2, 3, 4, 5, 6}) {
 		t.Error("Multiple element insert fail: ", m.data)
 	}
 }
@@ -64,13 +64,13 @@ func TestMinDeleteManyDesc(t *testing.T) {
 		m.Insert(n)
 	}
 
-	for _, n := range nums {
+	minedNums := []int{1, 2, 3, 4, 5, 6}
+	for _, n := range minedNums {
 		v := m.ExtractMin()
 		if v != n {
 			t.Error("Multi element extract fail", v, m.data)
 		}
 	}
-
 }
 
 func TestMinDeleteManyAsc(t *testing.T) {
@@ -81,8 +81,7 @@ func TestMinDeleteManyAsc(t *testing.T) {
 		m.Insert(n)
 	}
 
-	minedNums := []int{6, 5, 4, 3, 2, 1}
-	for _, n := range minedNums {
+	for _, n := range nums {
 		v := m.ExtractMin()
 		if v != n {
 			t.Error("Multi element extract fail", v, m.data)

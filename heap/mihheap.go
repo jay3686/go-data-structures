@@ -39,11 +39,11 @@ func (h MinHeap) heapify(i int) {
 	leftChild := 2*i + 1
 	rightChild := 2*i + 2
 
-	if leftChild < len(h.data) && h.data[leftChild] > h.data[i] {
+	if leftChild < len(h.data) && h.data[leftChild] < h.data[i] {
 		h.data[leftChild], h.data[i] = h.data[i], h.data[leftChild]
 		h.heapify(leftChild)
 	}
-	if rightChild < len(h.data) && h.data[rightChild] > h.data[i] {
+	if rightChild < len(h.data) && h.data[rightChild] < h.data[i] {
 		h.data[rightChild], h.data[i] = h.data[i], h.data[rightChild]
 		h.heapify(rightChild)
 	}
@@ -57,7 +57,7 @@ func (h *MinHeap) Insert(n int) {
 	// parent of index i is  i / 2
 	c := len(h.data) - 1
 	p := (c - 1) / 2
-	for c > 0 && h.data[p] < h.data[c] {
+	for c > 0 && h.data[p] > h.data[c] {
 		h.data[p], h.data[c] = h.data[c], h.data[p]
 		c, p = p, (p-1)/2
 	}
