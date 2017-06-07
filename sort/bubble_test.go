@@ -21,14 +21,20 @@ func TestBubbleSort2(t *testing.T) {
 }
 
 func BenchmarkBubbleSort(b *testing.B) {
-	nums := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+	nums := []int{}
+	for i := 1000; i >= -1000; i-- {
+		nums = append(nums, i)
+	}
 	for i := 0; i < b.N; i++ {
 		BubbleSort(nums)
 	}
 }
 
 func BenchmarkBubbleSort2(b *testing.B) {
-	nums := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+	nums := []int{}
+	for i := 1000; i >= -1000; i-- {
+		nums = append(nums, i)
+	}
 	for i := 0; i < b.N; i++ {
 		BubbleSort2(nums)
 	}
