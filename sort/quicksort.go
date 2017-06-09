@@ -4,20 +4,20 @@ package sort
 
 // QuickSort sorts an array of ints in ascending order.
 func QuickSort(a []int) {
-	quickSort(a, 0, len(a))
+	quickSort(a, 0, len(a)-1)
 }
 
 // quickSort recursivelly sorts indexes s-e of an array
 func quickSort(a []int, s int, e int) {
 	// choose middle element as pivot.
 	p := a[(s+e)/2]
-
-	if s == e-1 {
+	if s >= e {
 		return
 	}
-	smallest, i, j := 0, 0, len(a)-1
 
-	for i < j {
+	smallest, i, j := s, s, e
+
+	for i <= j {
 		if a[i] < p {
 			a[smallest], a[i] = a[i], a[smallest]
 			i++
@@ -29,7 +29,15 @@ func quickSort(a []int, s int, e int) {
 			i++
 		}
 	}
-	quickSort(a, s, (s+e)/2)
-	quickSort(a, (s+e)/2, e)
+	left := smallest - 1
+	// if smallest < 0 {
+	// 	left = 0
+	// }
+	right := j + 1
+	// if j >= len(a) {
+	// 	j = len(a) - 1
+	// }
+	quickSort(a, s, left)
+	quickSort(a, right, e)
 
 }
