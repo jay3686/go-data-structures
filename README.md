@@ -17,6 +17,5 @@ go test ./...
 
 To show coverage report for entire project
 ```sh
-go test ./... -coverprofile=coverage.out
-go tool cover -func=coverage.out
+go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out
 ```
