@@ -13,9 +13,19 @@ func TestQuickSort(t *testing.T) {
 	}
 }
 
-func BenchmarkQuickSort(b *testing.B) {
+func BenchmarkQuickSortReverseOrder(b *testing.B) {
 	nums := []int{}
 	for i := 1000; i >= -1000; i-- {
+		nums = append(nums, i)
+	}
+	for i := 0; i < b.N; i++ {
+		QuickSort(nums)
+	}
+}
+
+func BenchmarkQuickSortInOrder(b *testing.B) {
+	nums := []int{}
+	for i := -1000; i <= 1000; i++ {
 		nums = append(nums, i)
 	}
 	for i := 0; i < b.N; i++ {

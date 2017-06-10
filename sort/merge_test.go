@@ -13,9 +13,19 @@ func TestMergeSort(t *testing.T) {
 	}
 }
 
-func BenchmarkMergeSort(b *testing.B) {
+func BenchmarkMergeSortReverseOrder(b *testing.B) {
 	nums := []int{}
 	for i := 1000; i >= -1000; i-- {
+		nums = append(nums, i)
+	}
+	for i := 0; i < b.N; i++ {
+		MergeSort(nums)
+	}
+}
+
+func BenchmarkMergeSortInOrder(b *testing.B) {
+	nums := []int{}
+	for i := -1000; i <= 1000; i++ {
 		nums = append(nums, i)
 	}
 	for i := 0; i < b.N; i++ {

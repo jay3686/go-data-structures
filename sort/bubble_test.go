@@ -20,7 +20,7 @@ func TestBubbleSort2(t *testing.T) {
 	}
 }
 
-func BenchmarkBubbleSort(b *testing.B) {
+func BenchmarkBubbleSortReverseOrder(b *testing.B) {
 	nums := []int{}
 	for i := 1000; i >= -1000; i-- {
 		nums = append(nums, i)
@@ -30,9 +30,29 @@ func BenchmarkBubbleSort(b *testing.B) {
 	}
 }
 
-func BenchmarkBubbleSort2(b *testing.B) {
+func BenchmarkBubbleSort2ReverseOrder(b *testing.B) {
 	nums := []int{}
 	for i := 1000; i >= -1000; i-- {
+		nums = append(nums, i)
+	}
+	for i := 0; i < b.N; i++ {
+		BubbleSort2(nums)
+	}
+}
+
+func BenchmarkBubbleSortInOrder(b *testing.B) {
+	nums := []int{}
+	for i := -1000; i <= 1000; i++ {
+		nums = append(nums, i)
+	}
+	for i := 0; i < b.N; i++ {
+		BubbleSort(nums)
+	}
+}
+
+func BenchmarkBubbleSort2InOrder(b *testing.B) {
+	nums := []int{}
+	for i := -1000; i <= 1000; i++ {
 		nums = append(nums, i)
 	}
 	for i := 0; i < b.N; i++ {
